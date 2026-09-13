@@ -1,0 +1,21 @@
+verified_at: 2026-09-11
+owners:
+  prod: steward@legenda.example
+  test: steward@legenda.example
+  pricing-api: pricing-team@legenda.example
+# Declared-ярус проекта legenda-pricing (синтетический двойник, стюард — владелец стенда).
+contours:
+  prod:    {observability: grafana.prod,    data_class: internal}
+  test:    {observability: null, data_class: internal}
+services:
+  pricing-api:
+    repo: https://github.com/artemasmith/mshift-legenda-pricing
+    stack: python-pytest
+    paths: [pricing/]
+    entities: [order.total, order.category, order.discounted]
+entities:
+  order.total: {type: money, owner: pricing-api, note: "итоговая сумма заказа после скидок"}
+  order.category: {type: string, owner: pricing-api, note: "категория заказа; скидка категории X применяется только к X"}
+  order.discounted: {type: bool, owner: pricing-api, note: "флаг «скидка уже применена»; повторная скидка запрещена"}
+queues: []
+critical_paths: [pricing/]

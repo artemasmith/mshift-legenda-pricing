@@ -1,0 +1,5 @@
+# Глоссарий Declared-яруса legenda-pricing: термины, которыми написаны требования и контракты.
+- term: уценённый заказ
+  definition: "заказ с order.discounted = true; повторная скидка к нему не применяется"
+- term: скидка категории
+  definition: "процент pct, применяемый к order.total только при совпадении order.category"
